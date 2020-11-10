@@ -14,6 +14,7 @@ module.exports = merge(base, {
     new HtmlWebpackPlugin({
       minify: false,
       filename: 'index.ssr.html',
+      client:'client.bundle.js',
       template: path.resolve(__dirname, '../public/index.ssr.html'),
       excludeChunks: ['server'],
     }),

@@ -6,9 +6,9 @@ module.exports = merge(base, {
   entry: {
     client: path.resolve(__dirname, '../src/client-entry.js'),
   },
-  plugins: [
-    new HtmlWrbpackPlugin({
-      template: path.resolve(__dirname, '../public/index.html'),
-    }),
-  ],
+  // plugins: [
+  //   new HtmlWrbpackPlugin({
+  //     template: path.resolve(__dirname, '../public/index.html'),
+  //   }),
+  // ],
 })

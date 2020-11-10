@@ -15,12 +15,15 @@ let template = fs.readFileSync(
 )
 const render = VueServerRender.createBundleRenderer(bundle, { template })
 const app = new Koa()
+app.use(Static(path.resolve(__dirname, './dist')))
 const router = new Router()
 app.use(router.routes())
-app.use(Static(path.resolve(__dirname, './dist')))
-router.get('/', async (ctx) => {
+router.get('/(.*)', async (ctx) => {
   ctx.body = await new Promise((resolve) => {
-    render.renderToString((err, html) => {
+    render.renderToString({ url: ctx.url }, (err, html) => {
+      if (err && err.code === 404) {
+        return resolve('Not Found')
+      }
       resolve(html)
     })
   })
